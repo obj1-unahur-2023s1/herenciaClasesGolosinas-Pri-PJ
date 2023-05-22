@@ -8,60 +8,87 @@ object naranja { }
 object limon { }
 
 
+
+
 /*
  * Golosinas
  */
-class Bombon {
-	var peso = 15
+
+class Golosina {  //creamos una herencia para que todas las clases hereden los mismos metodos
+	var property peso = 15
+	var property libreGluten = true
+	var property precio
+	var property sabor	
+}
+
+class Bombon inherits Golosina{
+	method initialize(){
+		precio = 5
+		sabor = frutilla
+	}
 	
-	method precio() { return 5 }
-	method peso() { return peso }
 	method mordisco() { peso = peso * 0.8 - 1 }
-	method sabor() { return frutilla }
-	method libreGluten() { return true }
 }
 
-
-class Alfajor {
-	var peso = 15
+class BombonDuro inherits Bombon{
+	method initialize(){
+		precio = 5
+		sabor = frutilla
+	}
 	
-	method precio() { return 12 }
-	method peso() { return peso }
+	override method mordisco() { peso = peso - 1 } //cuando se comporta de otra forma se pone asi
+	
+	method gradoDureza(){
+		
+	}
+}
+
+class Alfajor inherits Golosina{
+	
+	method initialize(){ // aca cambio los valores que no coincide con los predeterminados o asigno valores
+		libreGluten = false
+		precio = 12
+		sabor = chocolate
+	}
+
 	method mordisco() { peso = peso * 0.8 }
-	method sabor() { return chocolate }
-	method libreGluten() { return false }
 }
 
-class Caramelo {
-	var peso = 5
-
-	method precio() { return 12 }
-	method peso() { return peso }
-	method mordisco() { peso = peso - 1 }
-	method sabor() { return frutilla }
-	method libreGluten() { return true }
-}
-
-
-class Chupetin {
-	var peso = 7
+class Caramelo inherits Golosina{
 	
-	method precio() { return 2 }
-	method peso() { return peso }
+	method initialize(){
+		peso = 5
+		precio = 12
+		sabor = frutilla
+	}
+	
+	method mordisco() { peso = peso - 1 }
+}
+
+
+class Chupetin inherits Golosina{
+	
+	method initialize(){
+		peso = 7
+		precio = 2
+		sabor = naranja
+	}
+	
 	method mordisco() { 
 		if (peso >= 2) {
 			peso = peso * 0.9
 		}
 	}
-	method sabor() { return naranja }
-	method libreGluten() { return true }
 }
 
-class Oblea {
-	var peso = 250
+class Oblea inherits Golosina{
 	
-	method precio() { return 5 }
-	method peso() { return peso }
+	method initialize(){
+		libreGluten = false
+		precio = 5
+		sabor = vainilla
+	}
+	
 	method mordisco() {
 		if (peso >= 70) {
 			// el peso pasa a ser la mitad
@@ -71,8 +98,6 @@ class Oblea {
 			peso = peso - (peso * 0.25)
 		}
 	}	
-	method sabor() { return vainilla }
-	method libreGluten() { return false }
 }
 
 class Chocolatin {
